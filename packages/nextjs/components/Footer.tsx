@@ -11,8 +11,6 @@ import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { useTargetNetwork } from "~~/hooks/scaffold-stark/useTargetNetwork";
 import { useGlobalState } from "~~/services/store/store";
 import { devnet } from "@starknet-react/chains";
-import { Faucet } from "~~/components/scaffold-stark/Faucet";
-import { getBlockExplorerLink } from "~~/utils/scaffold-stark";
 
 /**
  * Site footer
@@ -37,21 +35,7 @@ export const Footer = () => {
                 </div>
               </div>
             )}
-            {isLocalNetwork && (
-              <>
-                <Faucet />
-                <Link
-                  href={getBlockExplorerLink(targetNetwork)}
-                  target={"_blank"}
-                  rel={"noopener noreferrer"}
-                  passHref
-                  className="btn btn-primary btn-sm font-normal gap-1"
-                >
-                  <MagnifyingGlassIcon className="h-4 w-4" />
-                  <span>Block Explorer</span>
-                </Link>
-              </>
-            )}
+            
           </div>
           <SwitchTheme
             className={`pointer-events-auto ${
@@ -59,58 +43,6 @@ export const Footer = () => {
             }`}
           />
         </div>
-      </div>
-      <div className="w-full">
-        <ul className="menu menu-horizontal w-full">
-          <div className="flex justify-center items-center gap-2 text-sm w-full">
-            <div className="text-center">
-              <a
-                href="https://github.com/Quantum3-Labs/scaffold-stark-2"
-                target="_blank"
-                rel="noreferrer"
-                className="link"
-              >
-                Fork me
-              </a>
-            </div>
-            <span>·</span>
-            <div className="flex justify-center items-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block h-4 w-4" /> by
-              </p>
-              <a
-                className="flex justify-center items-center gap-1"
-                href="https://quantum3labs.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">Q3 Labs</span>
-              </a>
-              <p className="m-0 text-center">at</p>
-              <a
-                className="flex justify-center items-center gap-1"
-                href="https://buidlguidl.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">BuidlGuidl</span>
-              </a>
-            </div>
-            <span>·</span>
-            <div className="text-center">
-              <a
-                href="https://t.me/+wO3PtlRAreo4MDI9"
-                target="_blank"
-                rel="noreferrer"
-                className="link"
-              >
-                Support
-              </a>
-            </div>
-          </div>
-        </ul>
       </div>
     </div>
   );
