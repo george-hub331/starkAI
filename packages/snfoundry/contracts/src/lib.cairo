@@ -1,4 +1,4 @@
-mod YourContract;
+mod StarkNFT;
 #[cfg(test)]
 mod test {
     mod TestContract;

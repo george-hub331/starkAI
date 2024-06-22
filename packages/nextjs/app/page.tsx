@@ -7,10 +7,25 @@ import { Address } from "~~/components/scaffold-stark";
 import { useAccount } from "@starknet-react/core";
 import { Address as AddressType } from "@starknet-react/chains";
 
+
 const Home: NextPage = () => {
 
   const connectedAddress = useAccount();
 
+  // const deployContract = async () => {
+  //   // Deploy the contract
+
+  //   // 0x01fd43a1595ef7922ced7c545ffa09edea3a6c6383bde795ef374949b9440f04
+  //   const classHash = await connectedAddress.account?.deploy({
+  //     classHash:
+  //       "0x01fd43a1595ef7922ced7c545ffa09edea3a6c6383bde795ef374949b9440f04",
+  //     constructorCalldata: [connectedAddress.address as AddressType],
+  //   });
+
+  //   if (classHash) {
+  //     console.log(classHash);
+  //   }
+  // };
 
   return (
     <>
@@ -42,14 +57,9 @@ const Home: NextPage = () => {
           </p>
         </div>
 
-        
-        {/* <div
-          onClick={() => {
-            writeAsync();
-          }}
-        >
-          TEST TX
-        </div> */}
+        <div onClick={() => {
+          // deployContract();
+        }}>TEST TX</div>
       </div>
     </>
   );

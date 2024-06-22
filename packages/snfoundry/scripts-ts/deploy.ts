@@ -3,9 +3,12 @@ import { deployContract, deployer, exportDeployments } from "./deploy-contract";
 const deployScript = async (): Promise<void> => {
   await deployContract(
     {
-      owner: deployer.address, // the deployer address is the owner of the contract
+      recipient: deployer.address, // the deployer address is the owner of the contract
+      name: "StarkNFT",
+      symbol: "SNFT",
+      base_uri: "https://gateway.pinata.cloud/ipfs/",
     },
-    "YourContract"
+    "StarkNFT"
   );
 };
 
