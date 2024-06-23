@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     StarkNFT: {
       address:
-        "0x0211866c7b38180ec0031aa59fb0b5747ffd9e4ec8293e383278e111d57081a8",
+        "0x02a48b013360c63875ae4a43bde1edb2beeb64139344782138b78c3be3e23c20",
       abi: [
         {
           type: "impl",

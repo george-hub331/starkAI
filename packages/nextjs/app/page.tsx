@@ -19,6 +19,7 @@ import { displayTxResult } from "./debug/_components/contract";
 import BigNumber from "bignumber.js";
 
 const Home: NextPage = () => {
+
   const connectedAddress = useAccount();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,7 +42,7 @@ const Home: NextPage = () => {
 
   const [nftSymbol, setNftSymbol] = useState("");
 
-  const base = "http://localhost:3300/";
+  const base = "https://starkai.cryptea.me/";
 
   const deployContract = async () => {
     if (isLoading) return;
@@ -65,12 +66,15 @@ const Home: NextPage = () => {
     // return;
 
     try {
+
       const res = await axios.post(`${base}create`, {
         name: nftName,
         desc: nftDesc,
       });
 
       const image = `https://gateway.pinata.cloud/ipfs/${res.data.hash}?1`;
+
+      console.log(image, "sss");
 
       setImage(image);
 
@@ -83,6 +87,8 @@ const Home: NextPage = () => {
         symbol: nftSymbol,
         base_uri: image,
       });
+
+      console.log(constructorCalldata, "sss");
 
       const classDeploy = await connectedAddress.account?.deploy({
         classHash:
@@ -104,6 +110,10 @@ const Home: NextPage = () => {
         setIsLoading(false);
 
         console.log(mres, "sss");
+
+        toast.success(
+          `NFT deployed successfully 🎉  \n hash - ${classDeploy.transaction_hash}`
+        );
 
         setIsModalOpen(false);
         setSuccess(true);
@@ -133,7 +143,7 @@ const Home: NextPage = () => {
       console.log(res, "contract");
 
       await axios.post(`${base}ondeploy`, {
-        address: connectedAddress.address,
+        address,
         contract: cnt,
         desc: nftDesc,
       });
@@ -144,7 +154,7 @@ const Home: NextPage = () => {
 
       setAddress("");
 
-      toast.success("NFT minted to address successfully");
+      toast.success(`NFT minted to address successfully \n hash - ${res.transaction_hash}`);
 
     } catch (error) {
       toast.dismiss(ee);
@@ -161,12 +171,9 @@ const Home: NextPage = () => {
   const [nftDx, setNftDx] = useState<any>([]);
 
   function feltToString(felt: any) {
-    let hexStr = felt.toString(16);
-    if (hexStr.length % 2 !== 0) {
-      hexStr = "0" + hexStr;
-    }
+    const hexStr = felt.toString(16);
     const bytes = Buffer.from(hexStr, "hex");
-    return bytes.toString("utf-8");
+    return bytes.toString("utf-8").replace(/\0/g, ""); // Remove padding null characters
   }
 
   useEffect(() => {
@@ -197,19 +204,24 @@ const Home: NextPage = () => {
             function feltToNumber(felt: any) {
               return new BigNumber(felt.toString()).toNumber();
             }
+          
 
             return {
               ...e,
-              uri: feltToString(uri.data[0]),
+              uri: displayTxResult(uri, false, [
+                { type: "core::byte_array::ByteArray" },
+              ]),
               symbol: feltToString(symbol.pending_word),
               name: feltToString(name.pending_word),
             };
           })
         );
 
+        console.log(dx, 'dd')
+
         setNfts(dx);
 
-        setPageLoader(false);
+        if (connectedAddress.address) setPageLoader(false);
 
       } catch (error) {
         console.log(error);
@@ -223,7 +235,15 @@ const Home: NextPage = () => {
         className={`w-[60vw] mx-auto md:max-h-[30rem] md:max-w-[45rem]`}
         isOpen={success}
         animate={true}
-        onClose={() => {}}
+        onClose={() => {
+          setSuccess(false);
+          setNftDesc("");
+          setImage("");
+          setAddress("");
+          setContract("");
+          setNftName("");
+          window.location.reload();
+        }}
       >
         <div className="p-7 w-full">
           <div className="">
@@ -240,6 +260,7 @@ const Home: NextPage = () => {
                   setAddress("");
                   setContract("");
                   setNftName("");
+                  window.location.reload();
                 }}
               >
                 Close
@@ -410,6 +431,9 @@ const Home: NextPage = () => {
           >
             {/* show a list of nfts */}
             {nfts.map((e: any, i: number) => {
+
+              console.log(e.url, 'from map')
+
               return (
                 <div
                   onClick={() => {}}
@@ -418,7 +442,7 @@ const Home: NextPage = () => {
                 >
                   <div className="w-[150px] h-[150px] bg-gray-200 rounded-full mb-5">
                     <Image
-                      src={`${e.uri}`}
+                      src={e.uri}
                       width={150}
                       height={150}
                       alt="nft"

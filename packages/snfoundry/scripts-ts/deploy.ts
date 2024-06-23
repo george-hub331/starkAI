@@ -7,7 +7,8 @@ const deployScript = async (): Promise<void> => {
       recipient: deployer.address, // the deployer address is the owner of the contract
       name: "StarkNFT",
       symbol: "SNFT",
-      base_uri: "https://gateway.pinata.cloud/ipfs/",
+      base_uri:
+        "https://gateway.pinata.cloud/ipfs/QmZqALrmo8S6xw1fz9Xr9GrNM896enrxBHDYricBRECxFE?1",
     },
     "StarkNFT"
   );
