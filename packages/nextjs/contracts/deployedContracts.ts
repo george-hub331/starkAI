@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     StarkNFT: {
       address:
-        "0x02a8e986cf63612ed61b77c9c8cfaa3580cef387bcd89fc6c762e5bd217473ca",
+        "0x0211866c7b38180ec0031aa59fb0b5747ffd9e4ec8293e383278e111d57081a8",
       abi: [
         {
           type: "impl",
@@ -486,6 +486,22 @@ const deployedContracts = {
               type: "core::byte_array::ByteArray",
             },
           ],
+        },
+        {
+          type: "function",
+          name: "mint",
+          inputs: [
+            {
+              name: "recipient",
+              type: "core::starknet::contract_address::ContractAddress",
+            },
+            {
+              name: "token_id",
+              type: "core::integer::u256",
+            },
+          ],
+          outputs: [],
+          state_mutability: "external",
         },
         {
           type: "event",

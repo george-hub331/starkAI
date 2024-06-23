@@ -60,7 +60,7 @@ mod StarkNFT {
         self.erc721._mint(recipient, token_id);
     }
 
-    // mint function
+    #[external(v0)]
     fn mint(
         ref self: ContractState,
         recipient: ContractAddress,

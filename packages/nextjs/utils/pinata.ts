@@ -8,6 +8,7 @@ interface PinFileProps {
 }
 
 export const pinFileToIPFS = async ({ filePath, fileName }: PinFileProps): Promise<any> => {
+
   const JWT = process.env.PINATA_JWT;
   if (!JWT) {
     throw new Error("PINATA_JWT is not defined in environment variables.");
@@ -15,6 +16,7 @@ export const pinFileToIPFS = async ({ filePath, fileName }: PinFileProps): Promi
 
   const formData = new FormData();
   const fileStream = fs.createReadStream(filePath);
+
   formData.append("file", fileStream);
 
   const pinataMetadata = JSON.stringify({

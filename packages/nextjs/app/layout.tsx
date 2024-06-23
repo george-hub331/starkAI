@@ -4,8 +4,8 @@ import "~~/styles/globals.css";
 import { ThemeProvider } from "~~/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Scaffold-Stark",
-  description: "Fast track your starknet journey",
+  title: "StarkAI",
+  description: "StarkAI is a platform for building and deploying StarkNet AI NFT smart contracts.",
   icons: "/logo.ico",
 };
 
