@@ -109,7 +109,7 @@ export const useScaffoldEventHistory = <
             keys: [
               [hash.getSelectorFromName(event.name.split("::").slice(-1)[0])],
             ],
-            address: deployedContractData?.address,
+            address: (deployedContractData as any)?.address,
             from_block: { block_number: Number(fromBlock || fromBlockUpdated) },
             to_block: { block_number: blockNumber },
           })
@@ -169,7 +169,7 @@ export const useScaffoldEventHistory = <
     contractName,
     eventName,
     deployedContractLoading,
-    deployedContractData?.address,
+    (deployedContractData as any)?.address,
     deployedContractData,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     JSON.stringify(filters, replacer),

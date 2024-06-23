@@ -56,7 +56,7 @@ export const useScaffoldWriteContract = <
     calls: deployedContractData
       ? [
           {
-            contractAddress: deployedContractData?.address,
+            contractAddress: (deployedContractData as any)?.address,
             entrypoint: functionName,
             calldata: parsedParams,
           },
@@ -93,7 +93,7 @@ export const useScaffoldWriteContract = <
         : parsedParams;
     const newCalls = [
       {
-        contractAddress: deployedContractData.address,
+        contractAddress: (deployedContractData as any).address,
         entrypoint: functionName,
         calldata: newParsedParams,
       },

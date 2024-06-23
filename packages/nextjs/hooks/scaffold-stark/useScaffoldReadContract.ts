@@ -25,7 +25,7 @@ export const useScaffoldReadContract = <
 
   return useContractRead({
     functionName,
-    address: deployedContract?.address,
+    address: (deployedContract as any)?.address,
     abi: deployedContract?.abi,
     watch: true,
     args,

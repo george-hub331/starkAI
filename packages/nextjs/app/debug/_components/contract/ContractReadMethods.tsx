@@ -39,7 +39,7 @@ export const ContractReadMethods = ({
       {functionsToDisplay.map(({ fn }) => (
         <ReadOnlyFunctionForm
           abi={deployedContractData.abi as Abi}
-          contractAddress={deployedContractData.address}
+          contractAddress={(deployedContractData as any).address}
           abiFunction={fn}
           key={fn.name}
         />

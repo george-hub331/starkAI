@@ -39,6 +39,7 @@
     "bignumber.js": "^9.1.2",
     "mongoose": "^8.4.3",
     "postcss": "^8.4.38",
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.4",
+    "vercel": "latest"
   }
 }

@@ -43,7 +43,7 @@ export const ContractVariables = ({
         <DisplayVariable
           abi={deployedContractData.abi as Abi}
           abiFunction={fn}
-          contractAddress={deployedContractData.address}
+          contractAddress={(deployedContractData as any).address}
           key={fn.name}
           refreshDisplayVariables={refreshDisplayVariables}
           //   inheritedFrom={inheritedFrom}

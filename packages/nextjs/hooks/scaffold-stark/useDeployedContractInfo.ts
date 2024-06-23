@@ -39,7 +39,7 @@ export const useDeployedContractInfo = <TContractName extends ContractName>(
       let contractClasHash: string | undefined = undefined;
       try {
         contractClasHash = await publicClient.getClassHashAt(
-          deployedContract.address,
+          (deployedContract as any).address,
           "pending" as BlockIdentifier,
         );
       } catch (error) {

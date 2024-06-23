@@ -49,7 +49,7 @@ export const useScaffoldMultiWriteContract = <
         ).find((fn) => fn.name === functionName);
 
         return {
-          contractAddress: contract?.address,
+          contractAddress: (contract as any)?.address,
           entrypoint: functionName,
           calldata:
             abiFunction && unParsedArgs
