@@ -23,7 +23,7 @@
     "prettier": "^2.8.8",
     "starknet": "5.25.0",
     "starknet-dev": "npm:starknet@6.7.0",
-    "toml": "^3.0.0",
+    "toml": "^5.0.1",
     "tslib": "^2.6.2"
   }
 }
